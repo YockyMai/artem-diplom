@@ -1,0 +1,339 @@
+body {
+  font-family: Arial;
+  color: #fff;
+  background-image: url(../media/Dining-Room.jpg);
+  background-repeat: no-repeat;
+  overflow-x: hidden;
+}
+.karta {
+  display: inline-block;
+  width: 140px;
+  height: 40px;
+  background-color: blue;
+  border-radius: 10%;
+  text-align: center;
+  margin-top: 20px;
+}
+a:hover {
+  color: grey;
+}
+a:active {
+  color: rgb(0, 149, 255);
+}
+.search {
+  display: none;
+}
+span {
+  width: 900px;
+  margin-bottom: 40px;
+  font-size: 20px;
+}
+.mainN {
+  width: 30%;
+  margin: 0 auto;
+  background-color: #0f0f0fa8;
+  padding: 45px;
+  border-radius: 15px;
+}
+.reg {
+  margin: 0 auto;
+}
+.reg p {
+  text-align: center;
+  font-size: 30px;
+  margin-top: 0px;
+
+  font-weight: bold;
+}
+
+input {
+  border: 0;
+  height: 25px;
+  padding: 3px 5px;
+  float: right;
+}
+
+form {
+  width: 500px;
+  margin: 0 auto;
+}
+
+label {
+  margin-top: 1000px;
+}
+
+.login_error {
+  color: rgb(255, 94, 94);
+  display: none;
+}
+.login_error_true {
+  display: flex !important;
+  font-size: 16px !important;
+}
+
+#submit {
+  width: 100%;
+  margin-top: 5px;
+  background-color: blueviolet;
+  cursor: pointer;
+  color: #fff;
+}
+
+@media all and (max-width: 1330px) {
+  .search {
+    width: 150px;
+  }
+  .address {
+    font-size: 10px;
+  }
+  header img:first-child {
+    width: 25px;
+    height: 25px;
+  }
+  header img:last-child {
+    width: 100px;
+    height: 20px;
+  }
+  .login {
+    font-size: 14px;
+  }
+  .login svg {
+    width: 17px;
+    height: 17px;
+  }
+  .CardButton {
+    width: 60px;
+    height: 40px;
+    font-size: 14px;
+  }
+  header {
+    align-items: center;
+  }
+
+  .logo {
+    width: 50px;
+  }
+}
+
+@media all and (max-width: 820px) {
+  header img:first-child {
+    width: 40px;
+    height: 40px;
+  }
+  header img:last-child {
+    width: 100px;
+    height: 30px;
+  }
+  .login {
+    font-size: 20px;
+  }
+  .login svg {
+    width: 20px;
+    height: 20px;
+  }
+  .CardButton {
+    width: 75px;
+    height: 38px;
+    font-size: 16px;
+  }
+  header {
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .logo {
+    width: 50px;
+  }
+}
+
+@media all and (max-width: 500px) {
+  header img:first-child {
+    width: 20px;
+    height: 20px;
+  }
+  header img:last-child {
+    width: 80px;
+    height: 17px;
+  }
+  .login {
+    font-size: 10px;
+  }
+  .login svg {
+    width: 13px;
+    height: 13px;
+  }
+  .CardButton {
+    width: 45px;
+    height: 23px;
+    font-size: 10px;
+  }
+  header {
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .logo {
+    width: 50px;
+  }
+  .form {
+    width: 130%;
+  }
+}
+
+@media all and (max-width: 1536px) {
+  .mainN {
+    width: 25%;
+  }
+  .reg p {
+    font-size: 25px;
+  }
+  .form {
+    width: 400px;
+  }
+  input {
+    float: none;
+    display: block;
+  }
+  #submit {
+    width: 45%;
+  }
+}
+@media all and (max-width: 1433px) {
+  #submit {
+    width: 45%;
+  }
+}
+@media all and (max-width: 1336px) {
+  #submit {
+    width: 45%;
+  }
+}
+
+@media all and (max-width: 1230px) {
+  #submit {
+    width: 45%;
+  }
+}
+@media all and (max-width: 1126px) {
+  #submit {
+    width: 45%;
+  }
+}
+@media all and (max-width: 500px) {
+  .mainN {
+    width: 55% !important;
+  }
+}
+@media all and (max-width: 820px) {
+  #submit {
+    width: 45%;
+  }
+  .mainN {
+    width: 25%;
+    margin-top: 150px;
+    height: 530px;
+  }
+  input {
+    float: none;
+    display: block;
+    padding: 1px 3px;
+  }
+
+  .form {
+    line-height: 17px;
+  }
+  .form label {
+    line-height: 2px;
+  }
+}
+@media all and (max-width: 1026px) {
+  #submit {
+    width: 45%;
+  }
+}
+@media all and (max-width: 922px) {
+  #submit {
+    width: 45%;
+  }
+}
+@media all and (max-width: 820px) {
+  #submit {
+    width: 45%;
+  }
+}
+@media all and (max-width: 722px) {
+  #submit {
+    width: 45%;
+  }
+}
+
+@media all and (max-width: 626px) {
+  #submit {
+    width: 45%;
+  }
+}
+
+@media all and (max-width: 375px) {
+  .mainN {
+    margin-bottom: 100px;
+  }
+  #submit {
+    width: 95% !important;
+  }
+}
+
+@media all and (max-width: 390px) {
+  #submit {
+    width: 90% !important;
+  }
+}
+@media all and (max-width: 414px) {
+  #submit {
+    width: 85%;
+  }
+  .form {
+    width: 90%;
+  }
+}
+@media all and (max-width: 1002px) {
+  .mainN {
+    margin-top: 150px;
+    /* height: 530px; */
+  }
+}
+
+@media all and (max-width: 1060px) {
+  .mainN {
+    margin-top: 150px;
+    /* height: 530px; */
+  }
+}
+
+@media all and (max-width: 1066px) {
+  .mainN {
+    margin-top: 150px;
+    /* height: 530px; */
+  }
+}
+
+@media all and (max-width: 530px) {
+  .mainN {
+    width: 40%;
+  }
+}
+@media all and (max-width: 540px) {
+  .mainN {
+    width: 40%;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .mainN {
+    margin-bottom: 100px;
+  }
+}
+@media all and (max-width: 1280px) {
+  .mainN {
+    margin-bottom: 100px;
+  }
+}
