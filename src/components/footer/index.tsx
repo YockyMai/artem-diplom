@@ -1,8 +1,4 @@
-import PIZZAA from "../../assets/PIZZAA.png";
-import Salats from "../../assets/Salats.png";
-import blini from "../../assets/blini.png";
-import ROLL from "../../assets/ROLL.png";
-import burger from "../../assets/burger.png";
+import {Link} from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -18,29 +14,17 @@ const Footer = () => {
       </svg>
       <div className="logosFooter">
         <h5>Время работы:</h5>
-        <h5>8:00 до 21:00</h5>
+        <h5>с 8:00 до 21:00</h5>
         <h5>Г.Уфа, Проспект октября, 12/1</h5>
       </div>
       <div className="aboutus">
-        <div className="eat">
-          <div className="eat-item size">
-            <img src={PIZZAA} alt="Пицца"/>
-          </div>
-          <div className="eat-item size">
-            <img src={Salats} alt="Салат"/>
-          </div>
-          <div className="eat-item size">
-            <img src={blini} alt="Блинчики"/>
-          </div>
 
-          <div className="eat-item size">
-            <img src={ROLL} alt="Ролл"/>
-          </div>
-          <div className="eat-item">
-            <img src={burger} alt="Бургер"/>
-          </div>
-        </div>
+        <Link to="aboutUs">О ресторане</Link>
+        <a href="https://vk.com/sk_withlove">Вконтакте</a>
+        <a href="https://t.me/+wVzuZGmOj-xkMjVi">Telegram</a>
+        <a href="https://instagram.com/svoya_kompaniya_official?igshid=YmMyMTA2M2Y=">Instagram</a>
       </div>
+      <div className="space"></div>
     </div>
   );
 };
