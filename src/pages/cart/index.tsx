@@ -1,9 +1,15 @@
 import "../../App.css"
 import {Link} from "react-router-dom";
 import ProductCard from "../../components/product-card";
-import {useAppSelector} from "../../redux/hook/hook";
+import {useAppDispatch, useAppSelector} from "../../redux/hook/hook";
+import {Button, Center, Group, Modal, SimpleGrid} from "@mantine/core";
+import {useDisclosure} from "@mantine/hooks";
+import {clearItems} from "../../redux/slices/cartSlice";
 
 const CartPage = () => {
+    const dispatch = useAppDispatch()
+    const [opened, { open, close }] = useDisclosure(false);
+    const currentTotalPrice = useAppSelector(state => state.cart.totalPrice)
     const data = {
         img: "https://secretmag.ru/imgs/2022/06/16/17/5453790/2c3e47586e7fe8036d315e346521fbc3b02caf7b.jpg",
         title: "Coca-Cola",
@@ -11,8 +17,20 @@ const CartPage = () => {
         price: "90"
     }
     const cart = useAppSelector(state => state.cart.cart)
+    console.log('das',cart.title)
+    const clearCart = () => {
+        dispatch(clearItems());
+        close();
+    }
   return (
     <div>
+        <Modal opened={opened} onClose={close} title="Внимание!" centered>
+            Вы уверены что хотите очистить корзину?
+            <div style={{display: "flex", marginTop: "3%"}}>
+                <button style={{marginRight: "5%"}} className={'CartBtn'} onClick={() => clearCart()}>Да</button>
+                <button style={{backgroundColor: "#c72626"}} className={'CartBtn'} onClick={close}>Нет</button>
+            </div>
+        </Modal>
       <div className="choice">
         <div className="ColdSnacks">Холодные закуски</div>
         <div className="Paste">Паста</div>
@@ -40,12 +58,13 @@ const CartPage = () => {
                     Вернуться к меню
                 </button>
             </Link>
-        </div> : <div className={'menu'}>
-            {cart.map((obj) => (
-                <ProductCard toCart obj={obj}/>
-            ))}
-        </div>}
-      <hr/>
+        </div> : <Center>
+            <SimpleGrid cols={4} spacing={"xl"}>
+                {cart.map((obj) => (
+                    <ProductCard toCart obj={obj}/>
+                ))}
+            </SimpleGrid>
+        </Center>}
       <h1>добавить к заказу</h1>
       <div className="menu">
           <ProductCard obj={data}/>
@@ -53,6 +72,15 @@ const CartPage = () => {
           <ProductCard obj={data}/>
           <ProductCard obj={data}/>
       </div>
+        {cart.length !== 0 && <>
+            <hr/>
+            <div style={{display: "flex", marginTop: "5%", justifyContent: "space-around"}}>
+                <h1>Итоговая стоимость: {currentTotalPrice} ₽</h1>
+                <div style={{marginTop: '1%', display: "flex", width: "15%"}}>
+                    <button style={{marginRight: "5%"}} className={'CartBtn'}>Оплатить</button>
+                    <button style={{backgroundColor: "#c72626"}} className={'CartBtn'} onClick={open}>Очитить корзину</button>
+                </div>
+            </div></>}
     </div>
   );
 };

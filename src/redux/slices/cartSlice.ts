@@ -35,6 +35,7 @@ const cartSlice = createSlice({
         },
         clearItems(state) {
             state.cart = [];
+            state.totalPrice = 0;
         },
     },
 });
