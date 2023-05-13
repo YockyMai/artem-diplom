@@ -4,6 +4,12 @@ import banner from "../../assets/banner1.jpg"
 import ProductCard from "../../components/product-card";
 
 const MainPage = () => {
+  const data = {
+    img: "https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg",
+    title: "Рулет с лососем",
+    description: " Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского.",
+    price: "320"
+  }
   return (
     <>
       <div className="slider">
@@ -20,43 +26,48 @@ const MainPage = () => {
       <div className="cards">
         <h1>Холодные закуски</h1>
         <div className="menu">
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
+          <ProductCard obj={data}/>
+          <ProductCard obj={data}/>
+          <ProductCard obj={data}/>
+          <ProductCard obj={data}/>
+
         </div>
         <hr id="paste" className="line1"/>
         <h1>Паста</h1>
         <div className="menu">
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-        </div>
+          <ProductCard obj={data}/>
+          <ProductCard obj={data}/>
+          <ProductCard obj={data}/>
+          <ProductCard obj={data}/>
+
+          </div>
         <hr id="salads" className="line1"/>
         <h1>Салаты</h1>
         <div className="menu">
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-        </div>
+          <ProductCard obj={data}/>
+          <ProductCard obj={data}/>
+          <ProductCard obj={data}/>
+          <ProductCard obj={data}/>
+
+          </div>
         <hr id="soups" className="line1"/>
         <h1>Супы</h1>
         <div className="menu">
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-        </div>
+          <ProductCard obj={data}/>
+          <ProductCard obj={data}/>
+          <ProductCard obj={data}/>
+          <ProductCard obj={data}/>
+
+          </div>
         <hr id="dishes" className="line1"/>
         <h1>Гарниры</h1>
         <div className="menu">
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-          <ProductCard img={"https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg"} title={"Рулет с лососем"} description={" Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского."} price={"320"}/>
-        </div>
+          <ProductCard obj={data}/>
+          <ProductCard obj={data}/>
+          <ProductCard obj={data}/>
+          <ProductCard obj={data}/>
+
+           </div>
       </div>
       <div className="AboutBox">
         <div className="mask">

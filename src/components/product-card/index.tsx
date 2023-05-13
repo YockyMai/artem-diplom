@@ -1,26 +1,40 @@
 import "./styles.css"
+import {useAppDispatch, useAppSelector} from "../../redux/hook/hook";
+import {addItem} from "../../redux/slices/cartSlice";
+import {isAuth} from "../../redux/slices/isAuthSlice";
 
 type Props = {
-  title: string;
-  img?:string;
-  description: string
-  price: string
+  obj: [{
+      title: string;
+      img?:string;
+      description: string
+      price: string
+  }],
+    toCart?: boolean | undefined
 }
 
-const ProductCard = ({title,img,description,price}:Props) => {
+const ProductCard = ({obj, toCart}:Props) => {
+    console.log(toCart)
+    const currentAuth = useAppSelector(state => state.isAuth.isAuth)
+    const dispatch = useAppDispatch()
+    const addToCart = (obj) => {
+        dispatch(addItem(obj))
+    }
   return (
     <div className="card">
-      <img alt={"Нет изображения"} src={img} className="card-image"/>
-      <h2 className="card-title">{title}</h2>
+      <img alt={"Нет изображения"} src={obj.img} className="card-image"/>
+      <h2 className="card-title">{obj.title}</h2>
       <h3 className="description">
-        {description}
+        {obj.description}
       </h3>
       <div className="price">
-        {price} ₽
+        {obj.price} ₽
       </div>
-      <div className="card-container">
-        <button type="button" className="CartBtn">В корзину</button>
-      </div>
+        {currentAuth ? toCart === undefined ?
+            <div className="card-container">
+            <button  type="button" className="CartBtn" onClick={() => addToCart(obj)}>В корзину</button>
+            </div> : '' : ''
+        }
     </div>
   );
 };
