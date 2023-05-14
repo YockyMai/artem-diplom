@@ -3,21 +3,22 @@ import {useForm} from "react-hook-form";
 import {useAppDispatch, useAppSelector} from "../../redux/hook/hook";
 import {removeUser, setUser} from "../../redux/slices/userSlice";
 import {isAuth} from "../../redux/slices/isAuthSlice";
+import {registration} from "../../http/userAPI";
 const SignupPage = () => {
   const dispatch = useAppDispatch()
   const user = useAppSelector(state => state.user)
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (data: any) => {
-    let obj = {
-      name: data.name,
-      email: data.email,
-      password: data.password,
-      role: 'ADMIN'
+  const onSubmit = async (data: any) => {
+    try{
+      const response = await registration(data.name, data.email, data.password);
+      console.log(response);
+      dispatch(setUser(response))
+      dispatch(isAuth(true))
+    }catch (e){
+      alert(e)
     }
-    dispatch(setUser(obj))
-    dispatch(isAuth(true))
   }
   return (
     <div className="mainN">

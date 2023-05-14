@@ -65,7 +65,7 @@ const Header = () => {
         {currentAuth && <div style={{display:"flex"}}>
           <div className="role" style={{display:"flex"}}>
             <IconUser style={{marginTop: '20%'}}/>
-            <p>{user.name}</p>
+            <p>{user.username}</p>
           </div>
           <button style={{height: "30px", marginTop: '10%', marginLeft: '10%'}} className={'CartBtn'} onClick={() => logout()}>Выйти</button>
         </div>}

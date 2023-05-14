@@ -2,9 +2,9 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 interface userInitialState {
     user: {
-        name: string,
+        username: string,
         email: string,
-        password: string,
+        password?: string,
         role: string,
     } | null
 }
