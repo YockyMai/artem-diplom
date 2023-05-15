@@ -31,14 +31,6 @@ const CartPage = () => {
                 <button style={{backgroundColor: "#c72626"}} className={'CartBtn'} onClick={close}>Нет</button>
             </div>
         </Modal>
-      <div className="choice">
-        <div className="ColdSnacks">Холодные закуски</div>
-        <div className="Paste">Паста</div>
-        <div className="Salads">Салаты</div>
-        <div className="Soups">Супы</div>
-        <div className="SideDishes">Гарниры</div>
-      </div>
-      <hr/>
         {cart.length === 0 ? <div className="CartContent">
             <svg width="76" height="89" viewBox="0 0 76 89" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
