@@ -6,6 +6,7 @@ import {useAppDispatch, useAppSelector} from "../../redux/hook/hook";
 import {removeUser} from "../../redux/slices/userSlice";
 import {isAuth} from "../../redux/slices/isAuthSlice";
 import {IconUser} from "@tabler/icons-react";
+import SearchCatalog from "../search-catalog";
 const Header = () => {
   const currentTotalPrice = useAppSelector(state => state.cart.totalPrice)
   const currentAuth = useAppSelector(state => state.isAuth.isAuth)
@@ -29,15 +30,7 @@ const Header = () => {
               fill="white"></path>
           </svg>
         </Link>
-        <div className="search">
-          <input type="text" className="address" placeholder="Введите название блюда"/>
-          <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="9.76657" cy="9.7666" r="8.98856" stroke="white" strokeWidth="1.5" strokeLinecap="round"
-                    strokeLinejoin="round"/>
-            <path d="M16.0183 16.4851L19.5423 20" stroke="white" strokeWidth="1.5" strokeLinecap="round"
-                  strokeLinejoin="round"/>
-          </svg>
-        </div>
+        <SearchCatalog/>
         <a href="tel:89175105759" className="contacts">
           <img src={CallingPng} alt="phone icon"/>
           <img src={Contacts} alt="number"/>
@@ -69,6 +62,7 @@ const Header = () => {
           </div>
           <button style={{height: "30px", marginTop: '10%', marginLeft: '10%'}} className={'CartBtn'} onClick={() => logout()}>Выйти</button>
         </div>}
+
         {currentAuth && <div className="cart">
           <Link to={"/cart"}>
             <button type="button" className="CardButton">Корзина | {currentTotalPrice} ₽</button>

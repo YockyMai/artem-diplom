@@ -4,12 +4,12 @@ import {addItem, removeItem} from "../../redux/slices/cartSlice";
 import {isAuth} from "../../redux/slices/isAuthSlice";
 
 type Props = {
-  obj: [{
+  obj: {
       title: string;
       img?:string;
       description: string
       price: string
-  }],
+  },
     toCart?: boolean | undefined
 }
 

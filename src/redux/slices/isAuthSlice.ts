@@ -12,7 +12,7 @@ export const isAuthSlice = createSlice({
     name: 'isAuth',
     initialState,
     reducers: {
-        isAuth: (state, action: PayloadAction<any>) => {
+        isAuth: (state, action: PayloadAction<boolean>) => {
             state.isAuth = action.payload
         },
     }
