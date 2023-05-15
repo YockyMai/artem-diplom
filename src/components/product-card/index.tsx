@@ -1,6 +1,6 @@
 import "./styles.css"
 import {useAppDispatch, useAppSelector} from "../../redux/hook/hook";
-import {addItem} from "../../redux/slices/cartSlice";
+import {addItem, removeItem} from "../../redux/slices/cartSlice";
 import {isAuth} from "../../redux/slices/isAuthSlice";
 
 type Props = {
@@ -20,6 +20,10 @@ const ProductCard = ({obj, toCart}:Props) => {
     const addToCart = (obj) => {
         dispatch(addItem(obj))
     }
+    const deleteProduct = (obj: any) => {
+        dispatch(removeItem(obj));
+        console.log('click')
+    }
   return (
     <div className="card">
       <img alt={"Нет изображения"} src={obj.img} className="card-image"/>
@@ -35,6 +39,7 @@ const ProductCard = ({obj, toCart}:Props) => {
             <button  type="button" className="CartBtn" onClick={() => addToCart(obj)}>В корзину</button>
             </div> : '' : ''
         }
+        {toCart && <button style={{backgroundColor: "#c72626"}} className={'CartBtn'} onClick={() => deleteProduct(obj)}>Убрать</button>}
     </div>
   );
 };
