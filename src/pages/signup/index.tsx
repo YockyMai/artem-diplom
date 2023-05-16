@@ -13,7 +13,6 @@ const SignupPage = () => {
   const onSubmit = async (data: any) => {
     try{
       const response = await registration(data.name, data.email, data.password);
-      console.log(response);
       dispatch(setUser(response))
       dispatch(isAuth(true))
     }catch (e){

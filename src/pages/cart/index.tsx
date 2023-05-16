@@ -17,7 +17,6 @@ const CartPage = () => {
         price: "90"
     }
     const cart = useAppSelector(state => state.cart.cart)
-    console.log('das',cart.title)
     const clearCart = () => {
         dispatch(clearItems());
         close();

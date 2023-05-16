@@ -5,16 +5,23 @@ import {isAuth} from "../../redux/slices/isAuthSlice";
 
 type Props = {
   obj: {
-      title: string;
+      id: number;
+      name: string;
       img?:string;
       description: string
-      price: string
+      price: number
+      info: {
+          description: string;
+      }[],
+      type: {
+          id: number,
+          name: string
+      }
   },
     toCart?: boolean | undefined
 }
 
 const ProductCard = ({obj, toCart}:Props) => {
-    console.log(toCart)
     const currentAuth = useAppSelector(state => state.isAuth.isAuth)
     const dispatch = useAppDispatch()
     const addToCart = (obj) => {
@@ -22,14 +29,13 @@ const ProductCard = ({obj, toCart}:Props) => {
     }
     const deleteProduct = (obj: any) => {
         dispatch(removeItem(obj));
-        console.log('click')
     }
   return (
     <div className="card">
-      <img alt={"Нет изображения"} src={obj.img} className="card-image"/>
-      <h2 className="card-title">{obj.title}</h2>
+      <img alt={"Нет изображения"} src={`http://localhost:7000/${obj.img}`} className="card-image"/>
+      <h2 className="card-title">{obj.name}</h2>
       <h3 className="description">
-        {obj.description}
+        {obj.info[0].description}
       </h3>
       <div className="price">
         {obj.price} ₽

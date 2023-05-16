@@ -2,14 +2,16 @@ import "../../App.css"
 import MaskGroup from "../../assets/MaskGroup.png"
 import banner from "../../assets/banner1.jpg"
 import ProductCard from "../../components/product-card";
+import {useEffect, useState} from "react";
+import {setProduct} from "../../redux/slices/productSlice";
+import {getAllProduct} from "../../http/productAPI";
 
 const MainPage = () => {
-  const data = {
-    img: "https://www.maggi.ru/data/images/recept/img640x500/recept_10_7ac8.jpg",
-    title: "Рулет с лососем",
-    description: " Рулет из лаваша с жареным лососем, овощами и брынзой. Подавать охлаждённым с бокалом шампанского.",
-    price: "320"
-  }
+  const [productData, setProductData] = useState<any>([]);
+  useEffect(() => {
+    const data = getAllProduct().then((data) => setProductData(data))
+    console.log(productData)
+  }, [])
   return (
     <>
       <div className="slider">
@@ -26,46 +28,39 @@ const MainPage = () => {
       <div className="cards">
         <h1>Холодные закуски</h1>
         <div className="menu">
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
-
+          {productData.map((obj) => (
+              obj.type.name === 'ХОЛОДНЫЕ ЗАКУСКИ' && <ProductCard obj={obj}/>
+          ))}
         </div>
         <hr id="paste" className="line1"/>
         <h1>Паста</h1>
         <div className="menu">
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
-
+          {productData.map((obj) => (
+              obj.type.name === 'ПАСТА' && <ProductCard obj={obj}/>
+          ))}
           </div>
         <hr id="salads" className="line1"/>
         <h1>Салаты</h1>
         <div className="menu">
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
+          {productData.map((obj) => (
+              obj.type.name === 'САЛАТЫ' && <ProductCard obj={obj}/>
+          ))}
 
           </div>
         <hr id="soups" className="line1"/>
         <h1>Супы</h1>
         <div className="menu">
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
+          {productData.map((obj) => (
+              obj.type.name === 'СУПЫ' && <ProductCard obj={obj}/>
+          ))}
 
           </div>
         <hr id="dishes" className="line1"/>
         <h1>Гарниры</h1>
         <div className="menu">
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
+          {productData.map((obj) => (
+              obj.type.name === 'ГАРНИРЫ' && <ProductCard obj={obj}/>
+          ))}
 
            </div>
       </div>
