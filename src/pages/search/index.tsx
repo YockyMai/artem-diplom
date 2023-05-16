@@ -1,23 +1,30 @@
-import {useEffect} from "react";
-import {useAppDispatch, useAppSelector} from "../../redux/hook/hook";
-import {removeResult} from "../../redux/slices/searchSlice";
+import {useAppSelector} from "../../redux/hook/hook";
 import ProductCard from "../../components/product-card";
+import "./styles.css"
 
 const SearchPage = () => {
-  const dispatch = useAppDispatch()
   const result = useAppSelector(state => state.search.result)
 
-  useEffect(()=>{
-
-    return () => {
-      dispatch(removeResult())
-    }
-  },[])
   return (
     <div>
-      {result.map((product)=>(
-        <ProductCard obj={{img: product.img, description: product.info[0].description, price: String(product.price), title: product.name}}/>
-      ))}
+
+      {result.length > 0 ?
+        <>
+          <h2 style={{textAlign: "center"}}>
+            Результаты поиска
+          </h2>
+          <div className={"searchItems"}>
+            {result.map((product)=>(
+              <ProductCard obj={{img: `http://localhost:7000/${product.img}`, description: product.info[0].description, title: product.name, price: String(product.price)}}/>
+            ))}
+          </div>
+        </> :
+        <div>
+          <h2 style={{textAlign: "center"}}>
+            Нет результатов
+          </h2>
+        </div>
+      }
     </div>
   );
 };

@@ -28,8 +28,8 @@ function App() {
 
     $authHost.get("/api/user/auth").then((res)=>{
       localStorage.setItem("token", res.data)
-      dispatch(authReducer(true))
       const userData = jwtDecode(res.data)
+      dispatch(authReducer(true))
       dispatch(setUser(userData))
     }).catch(()=>{
       localStorage.removeItem("token")

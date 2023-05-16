@@ -11,22 +11,33 @@ const SearchCatalog = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-  const search = async () => {
+  const getItems = async () => {
     try{
       const res = await $host.get("/api/product/search", {
         params: {
           query: searchValue
         }
       })
+      setSearchValue("")
       dispatch(setResult(res.data));
       navigate("/search")
     }catch (e) {
       dispatch(removeResult());
     }
   }
+
+  const search = () => {
+    getItems()
+  }
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.keyCode !== 13) return
+    getItems()
+  }
+
   return (
     <div>
-      <Input value={searchValue} onChange={(e)=>{setSearchValue(e.currentTarget.value)}} size={"md"} rightSection={<IconSearch onClick={search} style={{marginBottom: -42}}/>} placeholder={"Введите название блюда"}/>
+      <Input onKeyDown={onKeyDown} value={searchValue} onChange={(e)=>{setSearchValue(e.currentTarget.value)}} size={"md"} rightSection={<IconSearch onClick={search} style={{marginBottom: -42}}/>} placeholder={"Введите название блюда"}/>
     </div>
   );
 };

@@ -27,7 +27,7 @@ const searchSlice = createSlice({
   initialState,
   reducers: {
     setResult(state, action: PayloadAction<any>) {
-      state.result.push(action.payload);
+      state.result = action.payload
     },
     removeResult(state) {
       state.result = []
