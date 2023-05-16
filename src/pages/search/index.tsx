@@ -15,7 +15,7 @@ const SearchPage = () => {
           </h2>
           <div className={"searchItems"}>
             {result.map((product)=>(
-              <ProductCard obj={{img: `http://localhost:7000/${product.img}`, description: product.info[0].description, title: product.name, price: String(product.price)}}/>
+              <ProductCard obj={product}/>
             ))}
           </div>
         </> :
