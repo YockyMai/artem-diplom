@@ -1,15 +1,25 @@
-import { StringLike } from "@firebase/util";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from 'uuid';
 
-interface IProduct {
-    cart: [
-        {
-            title: string,
-            description: string,
-            img: string,
-            price: string,
-        }
-    ]
+type IProduct = {
+    id: number;
+    name: string;
+    img?:string;
+    description: string
+    price: number
+    info: {
+        description: string;
+    }[],
+    type: {
+        id: number,
+        name: string
+    }
+    count: number
+}
+
+interface State {
+    totalPrice: number;
+    cart: IProduct[];
 }
 
 const initialState: State = {
@@ -17,21 +27,39 @@ const initialState: State = {
     cart: [],
 };
 
-interface State {
-    totalPrice: number;
-    cart: IProduct[];
-}
-
 const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
         addItem: (state, action: PayloadAction<IProduct>) => {
-            state.cart.push(action.payload);
+            const candidate = state.cart.find((item) => item.id === action.payload.id)
+
+            if (candidate) {
+                state.cart = state.cart.map((product)=>{
+                    if (product.id === candidate.id) {
+                        return {...product, count: product.count + 1}
+                    }
+                    return {...product, count: 0}
+                })
+            } else {
+                state.cart = [...state.cart, {...action.payload, count: 0}]
+            }
             state.totalPrice = state.totalPrice + Number(action.payload.price)
         },
-        removeItem: (state, action: PayloadAction<string>) => {
-            // state.cart = state.cart.filter((obj) => obj.title !== action.payload.title);
+        removeItem: (state, action: PayloadAction<IProduct>) => {
+            const removedItem = state.cart.find((item) => item.id === action.payload.id)
+            if (!removedItem) return
+            if (removedItem.count === 0) {
+                state.cart = state.cart.filter((cartItem)=> cartItem.id !== action.payload.id)
+            } else {
+                state.cart = state.cart.map((cartItem)=>{
+                    if (cartItem.id === action.payload.id) {
+                        return {...cartItem, count: cartItem.count - 1}
+                    } else {
+                        return cartItem
+                    }
+                })
+            }
             state.totalPrice = state.totalPrice - Number(action.payload.price)
         },
         clearItems:(state) => {

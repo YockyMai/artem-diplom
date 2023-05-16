@@ -2,21 +2,24 @@ import "../../App.css"
 import {Link} from "react-router-dom";
 import ProductCard from "../../components/product-card";
 import {useAppDispatch, useAppSelector} from "../../redux/hook/hook";
-import {Button, Center, Group, Modal, SimpleGrid} from "@mantine/core";
+import {Center, Modal, SimpleGrid} from "@mantine/core";
 import {useDisclosure} from "@mantine/hooks";
 import {clearItems} from "../../redux/slices/cartSlice";
+import {useEffect, useState} from "react";
+import {getAllProduct} from "../../http/productAPI";
 
 const CartPage = () => {
     const dispatch = useAppDispatch()
     const [opened, { open, close }] = useDisclosure(false);
     const currentTotalPrice = useAppSelector(state => state.cart.totalPrice)
-    const data = {
-        img: "https://secretmag.ru/imgs/2022/06/16/17/5453790/2c3e47586e7fe8036d315e346521fbc3b02caf7b.jpg",
-        title: "Coca-Cola",
-        description: " Coca-Cola — газированный безалкогольный напиток.",
-        price: "90"
-    }
+
+    const [productData, setProductData] = useState<any>([]);
+    useEffect(() => {
+      getAllProduct().then((data) => setProductData(data))
+    }, [])
+
     const cart = useAppSelector(state => state.cart.cart)
+
     const clearCart = () => {
         dispatch(clearItems());
         close();
@@ -51,17 +54,14 @@ const CartPage = () => {
             </Link>
         </div> : <Center>
             <SimpleGrid cols={4} spacing={"xl"}>
-                {cart.map((obj) => (
-                    <ProductCard toCart obj={obj}/>
+                {cart.map((obj,index) => (
+                    <ProductCard key={`${obj.id}${index}`} toCart obj={obj}/>
                 ))}
             </SimpleGrid>
         </Center>}
       <h1>добавить к заказу</h1>
       <div className="menu">
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
-          <ProductCard obj={data}/>
+        {productData.map((obj)=> obj.type.name === 'НАПИТКИ' && <ProductCard obj={obj}/>)}
       </div>
         {cart.length !== 0 && <>
             <hr/>

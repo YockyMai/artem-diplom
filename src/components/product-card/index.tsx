@@ -1,9 +1,8 @@
 import "./styles.css"
 import {useAppDispatch, useAppSelector} from "../../redux/hook/hook";
 import {addItem, removeItem} from "../../redux/slices/cartSlice";
-import {isAuth} from "../../redux/slices/isAuthSlice";
 
-type Props = {
+export type Props = {
   obj: {
       id: number;
       name: string;
@@ -24,7 +23,7 @@ type Props = {
 const ProductCard = ({obj, toCart}:Props) => {
     const currentAuth = useAppSelector(state => state.isAuth.isAuth)
     const dispatch = useAppDispatch()
-    const addToCart = (obj) => {
+    const addToCart = (obj:any) => {
         dispatch(addItem(obj))
     }
     const deleteProduct = (obj: any) => {
@@ -38,6 +37,10 @@ const ProductCard = ({obj, toCart}:Props) => {
         {obj.info[0].description}
       </h3>
       <div className="price">
+          {toCart &&
+            <div>
+                Всего {obj.count + 1}
+            </div>}
         {obj.price} ₽
       </div>
         {currentAuth ? toCart === undefined ?
