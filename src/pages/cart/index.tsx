@@ -2,11 +2,12 @@ import "../../App.css"
 import {Link} from "react-router-dom";
 import ProductCard from "../../components/product-card";
 import {useAppDispatch, useAppSelector} from "../../redux/hook/hook";
-import {Center, Modal, SimpleGrid} from "@mantine/core";
+import {Button, Center, Modal, SimpleGrid} from "@mantine/core";
 import {useDisclosure} from "@mantine/hooks";
 import {clearItems} from "../../redux/slices/cartSlice";
 import {useEffect, useState} from "react";
 import {getAllProduct} from "../../http/productAPI";
+import {modals} from "@mantine/modals";
 
 const CartPage = () => {
     const dispatch = useAppDispatch()
@@ -23,6 +24,21 @@ const CartPage = () => {
     const clearCart = () => {
         dispatch(clearItems());
         close();
+    }
+    const openModal = () => {
+        modals.open({
+            centered: true,
+            title: "Заказ оформлен!",
+            children: (
+                <>
+                    <p>
+                        Ваш заказ оформлен и будет дожидаться вас в ресторане.
+                    </p>
+                    <button className={'CartBtn'} onClick={() => modals.closeAll()}>Ок</button>
+                </>
+            ),
+        });
+        dispatch(clearItems());
     }
   return (
     <div>
@@ -68,7 +84,7 @@ const CartPage = () => {
             <div style={{display: "flex", marginTop: "5%", justifyContent: "space-around"}}>
                 <h1>Итоговая стоимость: {currentTotalPrice} ₽</h1>
                 <div style={{marginTop: '1%', display: "flex", width: "15%"}}>
-                    <button style={{marginRight: "5%"}} className={'CartBtn'}>Оплатить</button>
+                    <button style={{marginRight: "5%"}} className={'CartBtn'} onClick={() => openModal()}>Оформить заказ</button>
                     <button style={{backgroundColor: "#c72626"}} className={'CartBtn'} onClick={open}>Очитить корзину</button>
                 </div>
             </div></>}

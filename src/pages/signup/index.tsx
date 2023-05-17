@@ -4,6 +4,8 @@ import {useAppDispatch, useAppSelector} from "../../redux/hook/hook";
 import {removeUser, setUser} from "../../redux/slices/userSlice";
 import {isAuth} from "../../redux/slices/isAuthSlice";
 import {registration} from "../../http/userAPI";
+import {modals} from "@mantine/modals";
+import {Button} from "@mantine/core";
 const SignupPage = () => {
   const dispatch = useAppDispatch()
   const user = useAppSelector(state => state.user)
@@ -16,7 +18,18 @@ const SignupPage = () => {
       dispatch(setUser(response))
       dispatch(isAuth(true))
     }catch (e){
-      alert(e)
+      modals.open({
+        centered: true,
+        title: "Произошла ошибка!",
+        children: (
+            <>
+              <p>
+                Ошибка регистрации, возможно такая почта уже существует. Проверьте данные, или попробуйте позже.
+              </p>
+              <button className={'CartBtn'} onClick={() => modals.closeAll()}>Ок</button>
+            </>
+        ),
+      });
     }
   }
   return (

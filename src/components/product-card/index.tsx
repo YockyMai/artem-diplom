@@ -39,7 +39,7 @@ const ProductCard = ({obj, toCart}:Props) => {
       <div className="price">
           {toCart &&
             <div>
-                Всего {obj.count + 1}
+                Кол-во: {obj.count + 1}
             </div>}
         {obj.price} ₽
       </div>
