@@ -6,7 +6,9 @@ import {isAuth} from "../../redux/slices/isAuthSlice";
 import {login} from "../../http/userAPI";
 import {modals} from "@mantine/modals";
 import {Button} from "@mantine/core";
+import {useNavigate} from "react-router-dom";
 const SigninPage = () => {
+    const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const user = useAppSelector(state => state.user)
 
@@ -17,6 +19,7 @@ const SigninPage = () => {
            const response: any = await login(data.email, data.password);
            dispatch(setUser(response))
            dispatch(isAuth(true))
+           navigate('/')
        }catch (e){
            modals.open({
                centered: true,
@@ -49,7 +52,7 @@ const SigninPage = () => {
                             <input type="password" placeholder="Введите пароль" id="password" {...register('password', {required: true, minLength: 6, maxLength: 30, pattern: /[^А-Яа-я0-9]/})}/><br/>
                             <br/>
 
-                            <input value="Отправить" type="submit" id="submit"/>
+                            <input value="Войти" type="submit" id="submit"/>
                         </div>
                     </div>
                 </div>

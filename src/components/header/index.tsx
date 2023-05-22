@@ -1,5 +1,5 @@
 import "../../App.css"
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import CallingPng from "../../assets/Calling.png"
 import Contacts from "../../assets/Контакты_ +7 (917) 510-57-59.png"
 import {useAppDispatch, useAppSelector} from "../../redux/hook/hook";
@@ -8,6 +8,7 @@ import {isAuth} from "../../redux/slices/isAuthSlice";
 import {IconUser} from "@tabler/icons-react";
 import SearchCatalog from "../search-catalog";
 const Header = () => {
+  const navigate = useNavigate()
   const currentTotalPrice = useAppSelector(state => state.cart.totalPrice)
   const currentAuth = useAppSelector(state => state.isAuth.isAuth)
   const user = useAppSelector(state => state.user.user)
@@ -15,6 +16,7 @@ const Header = () => {
   const logout = () => {
     dispatch(isAuth(false))
     dispatch(removeUser())
+    navigate('/')
   }
   return (
     <div>
@@ -55,6 +57,9 @@ const Header = () => {
           </svg>
           Войти
         </Link></>}
+        {currentAuth && <Link to={'/my-profile'}>
+          <button className={'CartBtn'}>Мой профиль</button>
+        </Link>}
         {currentAuth && <div style={{display:"flex"}}>
           <div className="role" style={{display:"flex"}}>
             <IconUser style={{marginTop: '20%'}}/>

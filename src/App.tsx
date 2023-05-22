@@ -17,6 +17,8 @@ import {isAuth as authReducer} from "./redux/slices/isAuthSlice";
 import {removeUser, setUser} from "./redux/slices/userSlice";
 import jwtDecode from "jwt-decode";
 import SearchPage from "./pages/search";
+import NotFoundPage from "./pages/not-found";
+import MyProfilePage from "./pages/my-profile";
 
 function App() {
   const isAuth = useAppSelector(state => state.isAuth.isAuth)
@@ -53,7 +55,8 @@ function App() {
             <Route path={'admin-panel/add-product'} element={<AddProduct/>}/>
             <Route path={'admin-panel/remove-product'} element={<RemoveProduct/>}/>
             <Route path={'admin-panel/edit-product'} element={<EditProduct/>}/>
-            <Route path={'*'} element={<Main/>}/>
+            <Route path={'my-profile'} element={<MyProfilePage/>}/>
+            <Route path={'*'} element={<NotFoundPage/>} />
           </Route>
         </Routes>
       </BrowserRouter>
