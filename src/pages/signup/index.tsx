@@ -58,7 +58,7 @@ const SignupPage = () => {
               <input type="password" placeholder="Введите пароль" id="password" {...register('password', {required: true, minLength: 6, maxLength: 30, pattern: /[^А-Яа-я0-9]/})}/><br/>
               <br/>
 
-              <input value="Зарегестрироваться" type="submit" id="submit"/>
+              <input value="Зарегистрироваться" type="submit" id="submit"/>
             </div>
           </div>
         </div>
