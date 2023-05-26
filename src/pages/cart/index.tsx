@@ -8,6 +8,7 @@ import {clearItems} from "../../redux/slices/cartSlice";
 import {useEffect, useState} from "react";
 import {getAllProduct} from "../../http/productAPI";
 import {modals} from "@mantine/modals";
+import {$authHost} from "../../http";
 
 const CartPage = () => {
     const dispatch = useAppDispatch()
@@ -26,6 +27,9 @@ const CartPage = () => {
         close();
     }
     const openModal = () => {
+      $authHost.post("/api/order/", {price: currentTotalPrice}).then((res)=>{
+        console.log(res)
+      })
         modals.open({
             centered: true,
             title: "Заказ оформлен!",
