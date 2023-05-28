@@ -1,6 +1,4 @@
-import React from 'react';
 import {Select, Stack, Text, TextInput} from "@mantine/core";
-import {Dropzone} from "@mantine/dropzone";
 
 const EditProduct = () => {
     return (
@@ -11,20 +9,20 @@ const EditProduct = () => {
                     w={300}
                     placeholder="Выберите продукт"
                     data={[
-                        { value: '1', label: 'Холодные закуски' },
-                        { value: '2', label: 'Паста' },
-                        { value: '3', label: 'Салаты' },
-                        { value: '4', label: 'Супы' },
+                        {value: '1', label: 'Холодные закуски'},
+                        {value: '2', label: 'Паста'},
+                        {value: '3', label: 'Салаты'},
+                        {value: '4', label: 'Супы'},
                     ]}
                 />
                 <Select
                     w={300}
                     placeholder="Выберите тип продукта"
                     data={[
-                        { value: '1', label: 'Холодные закуски' },
-                        { value: '2', label: 'Паста' },
-                        { value: '3', label: 'Салаты' },
-                        { value: '4', label: 'Супы' },
+                        {value: '1', label: 'Холодные закуски'},
+                        {value: '2', label: 'Паста'},
+                        {value: '3', label: 'Салаты'},
+                        {value: '4', label: 'Супы'},
                     ]}
                 />
                 <TextInput w={300} placeholder={'Введите название продукта'}/>

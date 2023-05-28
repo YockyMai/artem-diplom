@@ -19,49 +19,53 @@ import jwtDecode from "jwt-decode";
 import SearchPage from "./pages/search";
 import NotFoundPage from "./pages/not-found";
 import MyProfilePage from "./pages/my-profile";
+import ReviewPage from "./pages/review";
+import RemoveReview from "./pages/admin-panel/remove-review";
 
 function App() {
-  const isAuth = useAppSelector(state => state.isAuth.isAuth)
-  const dispatch = useAppDispatch()
+    const isAuth = useAppSelector(state => state.isAuth.isAuth)
+    const dispatch = useAppDispatch()
 
-  useEffect(()=>{
-    const token = localStorage.getItem("token")
-    if (!token) return
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        if (!token) return
 
-    $authHost.get("/api/user/auth").then((res)=>{
-      localStorage.setItem("token", res.data)
-      const userData = jwtDecode(res.data)
-      dispatch(authReducer(true))
-      dispatch(setUser(userData))
-    }).catch(()=>{
-      localStorage.removeItem("token")
-      dispatch(authReducer(false))
-      dispatch(removeUser())
-    })
-  },[])
+        $authHost.get("/api/user/auth").then((res) => {
+            localStorage.setItem("token", res.data)
+            const userData = jwtDecode(res.data)
+            dispatch(authReducer(true))
+            dispatch(setUser(userData))
+        }).catch(() => {
+            localStorage.removeItem("token")
+            dispatch(authReducer(false))
+            dispatch(removeUser())
+        })
+    }, [])
 
-  return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path={"/"} element={<MainLayout/>} >
-            <Route index element={<Main />}/>
-            <Route path={"aboutUs"} element={<AboutUsPage />}/>
-            {!isAuth && <Route path={"signup"} element={<SignupPage />}/>}
-            {!isAuth && <Route path={"signin"} element={<SigninPage />}/>}
-            <Route path={"cart"} element={<CartPage />}/>
-            <Route path={"search"} element={<SearchPage />}/>
-            <Route path={'admin-panel'} element={<AdminPanelMain/>}/>
-            <Route path={'admin-panel/add-product'} element={<AddProduct/>}/>
-            <Route path={'admin-panel/remove-product'} element={<RemoveProduct/>}/>
-            <Route path={'admin-panel/edit-product'} element={<EditProduct/>}/>
-            <Route path={'my-profile'} element={<MyProfilePage/>}/>
-            <Route path={'*'} element={<NotFoundPage/>} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </>
-  )
+    return (
+        <>
+            <BrowserRouter>
+                <Routes>
+                    <Route path={"/"} element={<MainLayout/>}>
+                        <Route index element={<Main/>}/>
+                        <Route path={"aboutUs"} element={<AboutUsPage/>}/>
+                        {!isAuth && <Route path={"signup"} element={<SignupPage/>}/>}
+                        {!isAuth && <Route path={"signin"} element={<SigninPage/>}/>}
+                        <Route path={"cart"} element={<CartPage/>}/>
+                        <Route path={"search"} element={<SearchPage/>}/>
+                        <Route path={'admin-panel'} element={<AdminPanelMain/>}/>
+                        <Route path={'admin-panel/add-product'} element={<AddProduct/>}/>
+                        <Route path={'admin-panel/remove-product'} element={<RemoveProduct/>}/>
+                        <Route path={'admin-panel/edit-product'} element={<EditProduct/>}/>
+                        <Route path={'admin-panel/remove-review'} element={<RemoveReview/>}/>
+                        <Route path={'my-profile'} element={<MyProfilePage/>}/>
+                        <Route path={'*'} element={<NotFoundPage/>}/>
+                        <Route path={'review'} element={<ReviewPage/>}/>
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </>
+    )
 }
 
 export default App
