@@ -1,12 +1,15 @@
 import {Select, Stack} from "@mantine/core";
 import {useEffect, useState} from "react";
 import {getAllProduct, removeProduct} from "../../../http/productAPI.ts";
+import {$host} from "../../../http";
 
 const RemoveProduct = () => {
     const [check, setCheck] = useState<any>('')
     const [productData, setProductData] = useState<any>([]);
     useEffect(() => {
-        getAllProduct().then((data) => setProductData(data))
+        $host.get("/api/product/getAll").then(({data}:any)=>{
+            setProductData(data.rows)
+        })
     }, [])
     const deleteProduct = async () => {
         if (check === '') alert('Выберите продукт')

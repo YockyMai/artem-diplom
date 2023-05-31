@@ -2,7 +2,7 @@ import "../../App.css"
 import {Link} from "react-router-dom";
 import ProductCard from "../../components/product-card";
 import {useAppDispatch, useAppSelector} from "../../redux/hook/hook";
-import {Button, Center, Modal, SimpleGrid} from "@mantine/core";
+import {Center, Modal, SimpleGrid} from "@mantine/core";
 import {useDisclosure} from "@mantine/hooks";
 import {clearItems} from "../../redux/slices/cartSlice";
 import {useEffect, useState} from "react";
