@@ -2,7 +2,7 @@ import "../../App.css"
 import {Link} from "react-router-dom";
 import ProductCard from "../../components/product-card";
 import {useAppDispatch, useAppSelector} from "../../redux/hook/hook";
-import {Center, Modal, SimpleGrid} from "@mantine/core";
+import {Center, Group, Modal, Select, SimpleGrid} from "@mantine/core";
 import {useDisclosure} from "@mantine/hooks";
 import {clearItems} from "../../redux/slices/cartSlice";
 import {useEffect, useState} from "react";
@@ -14,7 +14,21 @@ const CartPage = () => {
     const dispatch = useAppDispatch()
     const [opened, { open, close }] = useDisclosure(false);
     const currentTotalPrice = useAppSelector(state => state.cart.totalPrice)
+    const [times, setTimes] = useState<string[]>(()=>{
+      let currentTime = new Date();
+      let currentHour = currentTime.getHours();
 
+      let timeArray = [];
+      for (let hour = currentHour + 1; hour <= 22; hour++) {
+        let formattedHour = ("0" + hour).slice(-2);
+        let timeString = formattedHour + ":00";
+        timeArray.push(timeString);
+      }
+
+      return timeArray;
+    })
+    const [selectedTime, setSelectedTime] = useState<null | string>(null)
+    const [selectedAddress, setSelectedAddress] = useState<null | string>(null)
     const [productData, setProductData] = useState<any>([]);
     useEffect(() => {
       getAllProduct().then((data) => setProductData(data))
@@ -27,7 +41,9 @@ const CartPage = () => {
         close();
     }
     const openModal = () => {
-      $authHost.post("/api/order/", {price: currentTotalPrice}).then((res)=>{
+      if (!selectedAddress) return alert("Выберите адресс магазина")
+      if (!selectedTime) return alert("Выберите время")
+      $authHost.post("/api/order/", {price: currentTotalPrice, address: selectedAddress, time: selectedTime}).then((res)=>{
         console.log(res)
       })
         modals.open({
@@ -84,6 +100,39 @@ const CartPage = () => {
         {productData.map((obj)=> obj.type.name === 'НАПИТКИ' && <ProductCard obj={obj}/>)}
       </div>
         {cart.length !== 0 && <>
+            <hr/>
+              <Center py={"sm"}>
+                Выберите время когда заберете заказ:
+                <Group ml={"sm"}>
+                  {times.map((time)=>(
+                    <div onClick={()=>setSelectedTime(time)} style={{padding: 5, backgroundColor: selectedTime === time ? "#56BB5B" : "#538f56", color: "#FFF", borderRadius: 5 }}>
+                      {time}
+                    </div>
+                  ))}
+                </Group>
+              </Center>
+              <Center py={"sm"}>
+                  Выберите где забирать заказ
+                  <Select pl={"sm"} onChange={setSelectedAddress} w={250} value={"Уфа, ул. Комсомольская, 2"}
+                          data={[
+                            {value: "Уфа, ул. Комсомольская, 2"},
+                            {value : "Уфа, ул. Аксакова, 7"},
+                            {value: "Уфа, ул. Маршала Жукова, 5/2"},
+                            {value: "Уфа, ул. Бакалинская, 48"},
+                            {value: "Уфа, ул. Цюрупы, 42"},
+                            {value: "Уфа, Первомайская, 46"},
+                            {value: "Уфа, Проспект Октября, 115"},
+                            {value: "Уфа, Софьи Перовской, 56"},
+                            {value: "Уфа, ул. Новоселов 2"},
+                          ]}
+                          placeholder={"Выберите адресс магазина"}
+                  />
+                 <div>
+                   <p style={{display:"block", marginLeft: 5}}>
+                     {selectedAddress && (selectedAddress)}
+                   </p>
+                 </div>
+              </Center>
             <hr/>
             <div style={{display: "flex", marginTop: "5%", justifyContent: "space-around"}}>
                 <h1>Итоговая стоимость: {currentTotalPrice} ₽</h1>

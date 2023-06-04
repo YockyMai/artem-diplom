@@ -58,9 +58,6 @@ form {
     margin: 0 auto;
 }
 
-label {
-    margin-top: 1000px;
-}
 .err_label{
     color: red;
 }
