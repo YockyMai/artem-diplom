@@ -1,4 +1,4 @@
-import {FileButton, NumberInput, Select, Stack, Text, TextInput} from "@mantine/core";
+import {NumberInput, Select, Stack, Text, TextInput} from "@mantine/core";
 import {useEffect, useState} from "react";
 import {$authHost, $host} from "../../../http";
 
@@ -7,7 +7,6 @@ const EditProduct = () => {
     const [selectedProductId, setSelectedProductId] = useState<string | null>(null)
 
     const [typeId, setTypeId] = useState<null | string>(null);
-    const [img, setImg] = useState<File | null>(null);
     const [price, setPrice] = useState<number | ''>('');
     const [info, setInfo] = useState('');
     const [name, setName] = useState('');
@@ -48,7 +47,6 @@ const EditProduct = () => {
         const formData = new FormData()
         formData.append("name", name)
         formData.append("productId", selectedProductId)
-        if (img) formData.append("img", img)
         formData.append("typeId", typeId)
         formData.append("price", price.toString())
         formData.append("info", JSON.stringify([{title: name, description: info}]))
@@ -75,19 +73,18 @@ const EditProduct = () => {
                     onChange={setTypeId}
                     placeholder="Выберите тип продукта"
                     data={[
-                      { value: '1', label: 'Холодные закуски' },
-                      { value: '2', label: 'Паста' },
+                      { value: '2', label: 'Холодные закуски' },
+                      { value: '1', label: 'Паста' },
                       { value: '3', label: 'Салаты' },
-                      { value: '4', label: 'Супы' },
+                      { value: '4', label: 'Гарниры' },
+                      { value: '5', label: 'Супы' },
+                      { value: '6', label: 'Напитки' },
                     ]}
                   />
 
                   <TextInput value={name} onChange={(e)=>setName(e.currentTarget.value)} w={300} placeholder={'Введите название продукта'}/>
                   <TextInput value={info} onChange={(e)=>setInfo(e.currentTarget.value)} w={300} placeholder={'Введите описание продукта'}/>
                   <NumberInput w={300} value={price} onChange={(e)=>setPrice(e)} placeholder={'Введите цену продукта'}/>
-                  <FileButton accept="image/png,image/jpeg" onChange={setImg}>
-                    {(props) => <button style={{width: 300}} className={'CartBtn'} {...props}>Загрузить изображение</button>}
-                  </FileButton>
                   <button  onClick={onSubmit} style={{width: 300}} className={'CartBtn'}>Редактировать товар</button>
                 </>
               )}

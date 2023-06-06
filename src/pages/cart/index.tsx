@@ -17,9 +17,9 @@ const CartPage = () => {
     const [times, setTimes] = useState<string[]>(()=>{
       let currentTime = new Date();
       let currentHour = currentTime.getHours();
-
+      console.log(currentHour)
       let timeArray = [];
-      for (let hour = currentHour + 1; hour <= 22; hour++) {
+      for (let hour = currentHour < 10 ? 10 : currentHour + 2; hour <= 22; hour++) {
         let formattedHour = ("0" + hour).slice(-2);
         let timeString = formattedHour + ":00";
         timeArray.push(timeString);
@@ -54,6 +54,9 @@ const CartPage = () => {
                     <p>
                         Ваш заказ оформлен и будет дожидаться вас в ресторане.
                     </p>
+                  <p>
+                    Детали заказа отправленны на почту.
+                  </p>
                     <button className={'CartBtn'} onClick={() => modals.closeAll()}>Ок</button>
                 </>
             ),
@@ -105,7 +108,7 @@ const CartPage = () => {
                 Выберите время когда заберете заказ:
                 <Group ml={"sm"}>
                   {times.map((time)=>(
-                    <div onClick={()=>setSelectedTime(time)} style={{padding: 5, backgroundColor: selectedTime === time ? "#56BB5B" : "#538f56", color: "#FFF", borderRadius: 5 }}>
+                    <div onClick={()=>setSelectedTime(time)} style={{padding: 5, backgroundColor: selectedTime === time ? "#56BB5B" : "#538f56", color: "#FFF", borderRadius: 5, cursor:"pointer" }}>
                       {time}
                     </div>
                   ))}
@@ -113,25 +116,20 @@ const CartPage = () => {
               </Center>
               <Center py={"sm"}>
                   Выберите где забирать заказ
-                  <Select pl={"sm"} onChange={setSelectedAddress} w={250} value={"Уфа, ул. Комсомольская, 2"}
+                  <Select pl={"sm"} onChange={setSelectedAddress} w={250} value={selectedAddress}
                           data={[
-                            {value: "Уфа, ул. Комсомольская, 2"},
-                            {value : "Уфа, ул. Аксакова, 7"},
-                            {value: "Уфа, ул. Маршала Жукова, 5/2"},
-                            {value: "Уфа, ул. Бакалинская, 48"},
-                            {value: "Уфа, ул. Цюрупы, 42"},
-                            {value: "Уфа, Первомайская, 46"},
-                            {value: "Уфа, Проспект Октября, 115"},
-                            {value: "Уфа, Софьи Перовской, 56"},
-                            {value: "Уфа, ул. Новоселов 2"},
+                            {value: "Уфа, ул. Комсомольская, 2", label:"Уфа, ул. Комсомольская, 2"},
+                            {value : "Уфа, ул. Аксакова, 7", label: "Уфа, ул. Аксакова, 7"},
+                            {value: "Уфа, ул. Маршала Жукова, 5/2", label: "Уфа, ул. Маршала Жукова, 5/2"},
+                            {value: "Уфа, ул. Бакалинская, 48", label: "Уфа, ул. Бакалинская, 48"},
+                            {value: "Уфа, ул. Цюрупы, 42", label: "Уфа, ул. Цюрупы, 42"},
+                            {value: "Уфа, Первомайская, 46", label: "Уфа, Первомайская, 46"},
+                            {value: "Уфа, Проспект Октября, 115", label: "Уфа, Проспект Октября, 115"},
+                            {value: "Уфа, Софьи Перовской, 56", label: "Уфа, Софьи Перовской, 56"},
+                            {value: "Уфа, ул. Новоселов 2", label: "Уфа, ул. Новоселов 2"},
                           ]}
                           placeholder={"Выберите адресс магазина"}
                   />
-                 <div>
-                   <p style={{display:"block", marginLeft: 5}}>
-                     {selectedAddress && (selectedAddress)}
-                   </p>
-                 </div>
               </Center>
             <hr/>
             <div style={{display: "flex", marginTop: "5%", justifyContent: "space-around"}}>

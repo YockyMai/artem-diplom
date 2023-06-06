@@ -46,10 +46,12 @@ const AddProduct = () => {
                        onChange={setTypeId}
                        placeholder="Выберите тип продукта"
                        data={[
-                           { value: '1', label: 'Холодные закуски' },
-                           { value: '2', label: 'Паста' },
+                           { value: '2', label: 'Холодные закуски' },
+                           { value: '1', label: 'Паста' },
                            { value: '3', label: 'Салаты' },
-                           { value: '4', label: 'Супы' },
+                           { value: '4', label: 'Гарниры' },
+                           { value: '5', label: 'Супы' },
+                           { value: '6', label: 'Напитки' },
                        ]}
                    />
                   <FileButton accept="image/png,image/jpeg" onChange={setImg}>

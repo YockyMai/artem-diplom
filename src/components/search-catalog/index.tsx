@@ -37,7 +37,7 @@ const SearchCatalog = () => {
 
   return (
     <div>
-      <Input onKeyDown={onKeyDown} value={searchValue} onChange={(e)=>{setSearchValue(e.currentTarget.value)}} size={"md"} rightSection={<IconSearch onClick={search} style={{marginBottom: -42}}/>} placeholder={"Введите название блюда"}/>
+      <Input onKeyDown={onKeyDown} value={searchValue} onChange={(e)=>{setSearchValue(e.currentTarget.value)}} size={"md"} rightSection={<IconSearch onClick={search}/>} placeholder={"Поиск"}/>
     </div>
   );
 };
