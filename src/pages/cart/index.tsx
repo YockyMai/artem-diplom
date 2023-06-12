@@ -106,7 +106,7 @@ const CartPage = () => {
             </Center>}
             <h1>добавить к заказу</h1>
             <div className="menu">
-                {productData.map((obj) => obj.type.name === 'НАПИТКИ' && <ProductCard obj={obj}/>)}
+                {productData.map((obj: any) => obj.type.name === 'НАПИТКИ' && <ProductCard obj={obj}/>)}
             </div>
             {cart.length !== 0 && <>
                 <hr/>

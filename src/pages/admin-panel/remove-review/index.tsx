@@ -26,7 +26,7 @@ const RemoveReview = () => {
                     <Select value={check} onChange={(value) => setCheck(value)}
                             data={reviewData.map((obj: any) => ({value: `${obj.id}`, label: `Отзыв №${obj.id}`}))}/>
                     <button onClick={() => deleteReview()} className={'CartBtn'}
-                            style={{backgroundColor: '#c72626', width: 300}}>Удалить продукт
+                            style={{backgroundColor: '#c72626', width: 300}}>Удалить отзыв
                     </button>
                 </Stack>
             </Center>
