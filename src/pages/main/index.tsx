@@ -182,7 +182,7 @@ const MainPage = () => {
                                         </defs>
                                     </svg>
                                 </div>
-                                <div className="squareText">Лучшие повора</div>
+                                <div className="squareText">Лучшие повара</div>
                             </div>
                         </div>
                         <div className="SquareCont">
